@@ -1,0 +1,43 @@
+
+public class ConducterCount{
+  public double firstBpm = 144f;
+  public double firstBps= 144f/120;
+  public double newSpeed;
+  public double newBps;
+  public double speed;
+  public Vector first;
+  public Vector end;
+  public double diff;
+  public double speed;
+  public double time;
+  
+  
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () { 
+	if (gesture.Type == Gesture.GestureType.TYPE_SWIPE) {
+    SwipeGesture swipeGesture = new SwipeGesture (gesture);
+    first=swipeGesture.StartPosition;
+    end=swipeGesture.Position;
+    diff=first.DistanceTo(end);
+    speed=swipeGesture.Speed;
+    time=diff/speed;
+    newBps= 1+time-firstBps;
+    newSpeed=firstBpm*newBps;
+    changeTempo(newSpeed);
+    }sles{
+    changeTempo(firstBPM);
+    }
+    }
+    
+    void changeTempo(float f){
+    
+    
+    
+}
+	}
+}
