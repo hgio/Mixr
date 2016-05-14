@@ -1,0 +1,56 @@
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.lang.Math;
+import com.leapmotion.leap.*;
+import com.leapmotion.leap.Gesture.State;
+
+import static java.lang.Thread.*;
+
+
+/**
+ * Created by hgiov on 5/14/2016.
+ */
+//import javafx.scene.media.*;
+public class AudioPlay extends javafx.application.Application{
+    private double bpm = 1.0;
+    private  SampleListener listener = null;
+    private Controller controller = null;
+
+
+        public void start(Stage stage) {
+            Group root = new Group();
+            Scene scene = new Scene(root, 500, 200);
+            System.out.println("hello world");
+            String bip = "file:/c:/Users/hgiov/Desktop/theGhostInside.m4a";
+            javafx.scene.media.Media hit = new javafx.scene.media.Media(bip);
+            javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(hit);
+            System.out.println("hello world");
+            mediaPlayer.setVolume(1.0);
+            mediaPlayer.play();
+            listener = new SampleListener(mediaPlayer);
+        controller = new Controller();
+        controller.addListener(listener);
+        System.out.println("Press Enter to quit...");
+
+            //controller.removeListener(listener);
+
+            //while()
+            //bpm=listener.getSeconds();
+            //mediaPlayer.setRate(bpm/144);
+
+            javafx.scene.media.MediaView mediaview = new MediaView(mediaPlayer);
+            ((Group) scene.getRoot()).getChildren().add(mediaview);
+            stage.setTitle("Media Player");
+            stage.setScene(scene);
+            stage.show();
+        }
+
+    public static void main(String[] args){
+        launch(args);
+    }
+
+    }
+
